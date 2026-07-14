@@ -6,7 +6,7 @@ import React from "react";
 
 interface PetProps {
   pet: {
-    _id: any; // MongoDB ObjectId বা String হ্যান্ডেল করার জন্য safe টাইপ
+    _id: any;
     name: string;
     breed: string;
     age: string;
@@ -33,7 +33,6 @@ const PetCard = ({ pet }: PetProps) => {
     size,
   } = pet;
 
-  // MongoDB এর _id স্ট্রিং বা অবজেক্ট যাই হোক আইডিটি ঠিকভাবে বের করার জন্য
   const petId = typeof _id === 'object' && _id !== null ? _id.$oid || String(_id) : _id;
 
   return (
@@ -46,21 +45,21 @@ const PetCard = ({ pet }: PetProps) => {
           src={image}
           alt={name}
           fill
-          sizes="(max-w-720px) 100vw, 350px"
+          sizes="(max-width: 720px) 100vw, 350px"
           priority={false}
           className="object-cover transition-transform duration-500 group-hover:scale-105"
         />
         
-        {/* ক্যাটাগরি ব্যাজ */}
+        {/* ক্যাটাগরি ব্যাজ - এখানে variant="flat" ব্যবহার করা হয়েছে */}
         <Chip
-          variant="solid"
+          variant="flat" 
           className="absolute right-3 top-3 bg-[#0a9396] text-xs font-semibold capitalize text-white"
         >
           {category}
         </Chip>
       </div>
 
-      {/* কার্ড হেডার ও কন্টেন্ট সেকশন (HeroUI অফিসিয়াল ডট-সিনট্যাক্স) */}
+      {/* কার্ড হেডার ও কন্টেন্ট সেকশন */}
       <Card.Header className="px-5 pt-5 pb-1 flex flex-col items-start">
         <Card.Title className="text-xl font-bold tracking-tight text-gray-800 mb-1">
           {name}
@@ -70,10 +69,8 @@ const PetCard = ({ pet }: PetProps) => {
         </Card.Description>
       </Card.Header>
 
-      {/* কার্ড কন্টেন্ট (টেক্সট কালার ঠিক করা হয়েছে যেন লাইট ব্যাকগ্রাউন্ডে দেখা যায়) */}
       <Card.Content className="px-5 pb-5 pt-0 text-gray-600">
         <div className="space-y-2 text-xs">
-          {/* লোকেশন এবং বয়স */}
           <div className="flex items-center gap-2">
             <MapPin size={14} className="text-gray-400" />
             <span className="capitalize">{location}</span>
@@ -84,7 +81,6 @@ const PetCard = ({ pet }: PetProps) => {
             </div>
           </div>
 
-          {/* অতিরিক্ত ইনফো (সাইজ ও কালার) */}
           {(size || color) && (
             <div className="flex items-center gap-2 text-gray-500 mt-1">
               {size && <span className="capitalize">Size: {size}</span>}
@@ -94,7 +90,6 @@ const PetCard = ({ pet }: PetProps) => {
           )}
         </div>
 
-        {/* স্ট্যাটাস সেকশন */}
         <div className="mt-4 flex items-baseline justify-between border-t border-gray-100 pt-3">
           <span className="text-xs text-gray-400">Status</span>
           <span className={`text-sm font-bold uppercase ${status === 'available' ? 'text-green-600' : 'text-amber-600'}`}>
@@ -103,7 +98,6 @@ const PetCard = ({ pet }: PetProps) => {
         </div>
       </Card.Content>
 
-      {/* অ্যাকশন বাটন সেকশন */}
       <Card.Footer className="p-3 bg-gray-50 border-t border-gray-100">
         <Link href={`/all-pets/${petId}`} className="w-full">
           <Button

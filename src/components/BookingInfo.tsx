@@ -1,11 +1,11 @@
 "use client";
-import { Button, Card, CardBody } from "@heroui/react";
+import { Button, Card } from "@heroui/react";
 import { DeleteAlert } from "./DeleteAlert";
 import Link from "next/link";
 import EditModal from "./edit-modal/EditModal";
 import { Calendar, User, Clock, Phone, Mail, FileText, Plus } from "lucide-react"; // সুন্দর আইকনের জন্য
 
-// TypeScript টাইপ (ঐচ্ছিক, তবে প্রজেক্টের জন্য বেস্ট প্র্যাকটিস)
+// TypeScript টাইপ
 interface Booking {
   _id: string;
   docName: string;
@@ -64,13 +64,14 @@ const BookingInfo = ({ bookings = [] }: { bookings: Booking[] }) => {
       {/* বুকিং লিস্ট বা এম্পটি স্টেট */}
       {bookings.length === 0 ? (
         <Card className="border border-dashed border-slate-300 bg-slate-50/50 p-12 text-center shadow-none">
-          <CardBody className="flex flex-col items-center justify-center">
+          {/* CardBody এর পরিবর্তে div ব্যবহার করা হয়েছে */}
+          <div className="flex flex-col items-center justify-center">
             <Calendar size={48} className="text-slate-400 mb-3" />
             <h3 className="text-xl font-bold text-slate-700">No Bookings Available</h3>
             <p className="text-slate-500 text-sm mt-1 max-w-sm">
               You haven't scheduled any appointments yet. Click the button above to book one.
             </p>
-          </CardBody>
+          </div>
         </Card>
       ) : (
         <div className="space-y-6">

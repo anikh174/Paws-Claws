@@ -57,7 +57,6 @@ const Navbar = () => {
           {user ? (
             <div className="flex gap-3 items-center">
               <Avatar
-                color="warning"
                 className="w-10 h-10 text-sm border-2 border-warning cursor-pointer"
               >
                 <Avatar.Image src={user?.image || ""} alt={user?.name || "User"} />
@@ -66,9 +65,9 @@ const Navbar = () => {
 
               <div>
                 <Button 
-                  onPress={handleLogout} // Button কম্পোনেন্টে onPress ব্যবহার করা ভালো
-                  color="danger"
-                  variant="ghost" // 'flat' এর পরিবর্তে 'ghost' ব্যবহার করা হয়েছে
+                  onPress={handleLogout} 
+                  color={"danger" as any}
+                  variant={"ghost" as any} 
                   className="rounded-lg font-semibold hover:opacity-90 transition-opacity"
                 >
                   Logout
@@ -84,7 +83,7 @@ const Navbar = () => {
               </Link>
               <Link href={"/register"}>
                 <Button
-                  variant="outline" // 'bordered' এর পরিবর্তে 'outline' ব্যবহার করা হয়েছে
+                  variant={"outline" as any}
                   className="rounded-lg border-amber-500 text-amber-600 hover:bg-amber-50 font-semibold"
                 >
                   Register

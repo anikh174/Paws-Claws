@@ -54,7 +54,8 @@ const PetCard = ({ pet }: PetProps) => {
         </p>
       </Card.Header>
 
-      <Card.Body className="px-5 pb-5 pt-0 text-gray-600">
+      {/* Card.Body এর পরিবর্তে Card.Content ব্যবহার করা হয়েছে */}
+      <Card.Content className="px-5 pb-5 pt-0 text-gray-600">
         <div className="space-y-2 text-xs">
           <div className="flex items-center gap-2">
             <MapPin width={14} height={14} className="text-gray-400" />
@@ -81,7 +82,7 @@ const PetCard = ({ pet }: PetProps) => {
             {status}
           </span>
         </div>
-      </Card.Body>
+      </Card.Content>
 
       <Card.Footer className="p-3 bg-gray-50 border-t border-gray-100">
         <Link href={`/all-pets/${petId}`} className="w-full">

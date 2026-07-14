@@ -7,6 +7,7 @@ import Link from "next/link";
 import { toast } from "react-toastify";
 import { authClient } from "../../lib/auth-client";
 
+// HeroUI এর টাইপ এরর এড়াতে আমরা কম্পোনেন্ট প্রপসগুলোকে explicitly হ্যান্ডেল করছি
 const Navbar = () => {
   const { data: session } = authClient.useSession();
   const user = session?.user;
@@ -20,7 +21,6 @@ const Navbar = () => {
     <div className="z-50 fixed w-full top-0 left-0 shadow-md shadow-amber-500/10">
       <div className="navbar bg-base-100 shadow-sm px-4 md:px-8">
         
-        {/* লোগো এবং মোবাইল ড্রপডাউন মেনু */}
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden" aria-label="Open Menu">
@@ -43,7 +43,6 @@ const Navbar = () => {
           </Link>
         </div>
 
-        {/* ডেস্কটপ নেভিগেশন মেনু */}
         <div className="navbar-center hidden lg:flex">
           <ul className="flex items-center gap-6 text-lg font-bold menu menu-horizontal px-1">
             <NavLink href={"/"}>Home</NavLink>
@@ -52,10 +51,10 @@ const Navbar = () => {
           </ul>
         </div>
 
-        {/* প্রোফাইল বা লগইন/রেজিস্টার বাটন */}
         <div className="navbar-end">
           {user ? (
             <div className="flex gap-3 items-center">
+              {/* Avatar এর জন্য প্রপস সরাসরি না দিয়ে এভাবে ব্যবহার করুন যা সব ভার্সনে কাজ করে */}
               <Avatar
                 className="w-10 h-10 text-sm border-2 border-warning cursor-pointer"
                 src={user?.image || ""}

@@ -144,7 +144,7 @@ const SignUpPage = () => {
           <Button
             className="w-full rounded-lg bg-gradient-to-r from-[#005f73]/90 to-[#0a9396] text-white font-semibold shadow-md mt-2"
             type="submit"
-            isLoading={isLoading}
+            isPending={isLoading}
           >
             {isLoading ? "Creating Account..." : "Create Account"}
           </Button>

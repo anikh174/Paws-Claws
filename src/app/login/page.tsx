@@ -23,7 +23,6 @@ const LoginPage = () => {
   const [isShowPassword, setIsShowPassword] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   
-  // স্টেট ম্যানেজমেন্ট যোগ করা হয়েছে
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
@@ -64,7 +63,6 @@ const LoginPage = () => {
     }
   };
 
-  // স্টেট আপডেট করার মাধ্যমে ডেমো লগইন
   const handleDemoLogin = () => {
     setEmail("demo@example.com");
     setPassword("password123A");
@@ -137,7 +135,7 @@ const LoginPage = () => {
           <Button
             className="w-full rounded-lg bg-gradient-to-r from-[#005f73]/90 to-[#0a9396] text-white font-semibold shadow-md mt-2"
             type="submit"
-            isLoading={isLoading}
+            isPending={isLoading} // এখানে isLoading পরিবর্তন করে isPending করা হয়েছে
           >
             {isLoading ? "Logging in..." : "Log In"}
           </Button>

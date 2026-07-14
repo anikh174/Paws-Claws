@@ -38,7 +38,7 @@ const PetCard = ({ pet }: PetProps) => {
         />
         
         <Chip
-          variant="primary"
+          variant="solid"
           className="absolute right-3 top-3 bg-[#0a9396] text-xs font-semibold capitalize text-white"
         >
           {category}
@@ -46,15 +46,15 @@ const PetCard = ({ pet }: PetProps) => {
       </div>
 
       <Card.Header className="px-5 pt-5 pb-1 flex flex-col items-start">
-        <Card.Title className="text-xl font-bold tracking-tight text-gray-800 mb-1">
+        <h3 className="text-xl font-bold tracking-tight text-gray-800 mb-1">
           {name}
-        </Card.Title>
-        <Card.Description className="text-sm font-medium text-[#0a9396] mb-2">
+        </h3>
+        <p className="text-sm font-medium text-[#0a9396] mb-2">
           {breed}
-        </Card.Description>
+        </p>
       </Card.Header>
 
-      <Card.Content className="px-5 pb-5 pt-0 text-gray-600">
+      <Card.Body className="px-5 pb-5 pt-0 text-gray-600">
         <div className="space-y-2 text-xs">
           <div className="flex items-center gap-2">
             <MapPin width={14} height={14} className="text-gray-400" />
@@ -81,15 +81,15 @@ const PetCard = ({ pet }: PetProps) => {
             {status}
           </span>
         </div>
-      </Card.Content>
+      </Card.Body>
 
       <Card.Footer className="p-3 bg-gray-50 border-t border-gray-100">
         <Link href={`/all-pets/${petId}`} className="w-full">
           <Button
-            className="w-full font-semibold text-white bg-[#0a9396] hover:bg-[#005f73] transition-colors duration-300 shadow-md rounded-md"
-            endContent={<Heart width={16} height={16} className="fill-white/20" />}
+            className="w-full flex items-center justify-center gap-2 font-semibold text-white bg-[#0a9396] hover:bg-[#005f73] transition-colors duration-300 shadow-md rounded-md"
           >
             Adopt Me
+            <Heart width={16} height={16} className="fill-white/20" />
           </Button>
         </Link>
       </Card.Footer>

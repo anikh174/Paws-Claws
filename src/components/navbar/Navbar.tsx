@@ -24,25 +24,11 @@ const Navbar = () => {
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden" aria-label="Open Menu">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h8m-8 6h16"
-                />
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" />
               </svg>
             </div>
-            <ul
-              tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow gap-2 text-md font-semibold"
-            >
+            <ul tabIndex={0} className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow gap-2 text-md font-semibold">
               <NavLink href={"/"}>Home</NavLink>
               <NavLink href={"/all-pets"}>Find a Pet</NavLink>
               <NavLink href={"/dashboard"}>Dashboard</NavLink>
@@ -70,7 +56,6 @@ const Navbar = () => {
         <div className="navbar-end">
           {user ? (
             <div className="flex gap-3 items-center">
-              {/* HeroUI v3 Avatar Fix */}
               <Avatar
                 color="warning"
                 className="w-10 h-10 text-sm border-2 border-warning cursor-pointer"
@@ -81,9 +66,9 @@ const Navbar = () => {
 
               <div>
                 <Button 
-                  onClick={handleLogout} 
+                  onPress={handleLogout} // Button কম্পোনেন্টে onPress ব্যবহার করা ভালো
                   color="danger"
-                  variant="flat" 
+                  variant="ghost" // 'flat' এর পরিবর্তে 'ghost' ব্যবহার করা হয়েছে
                   className="rounded-lg font-semibold hover:opacity-90 transition-opacity"
                 >
                   Logout
@@ -93,15 +78,13 @@ const Navbar = () => {
           ) : (
             <div className="flex gap-2">
               <Link href={"/login"}>
-                <Button
-                  className="rounded-lg bg-gradient-to-r from-amber-500 to-orange-500 text-white font-semibold shadow-md shadow-amber-500/20"
-                >
+                <Button className="rounded-lg bg-gradient-to-r from-amber-500 to-orange-500 text-white font-semibold shadow-md shadow-amber-500/20">
                   Login
                 </Button>
               </Link>
               <Link href={"/register"}>
                 <Button
-                  variant="bordered"
+                  variant="outline" // 'bordered' এর পরিবর্তে 'outline' ব্যবহার করা হয়েছে
                   className="rounded-lg border-amber-500 text-amber-600 hover:bg-amber-50 font-semibold"
                 >
                   Register

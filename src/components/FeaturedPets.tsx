@@ -26,7 +26,7 @@ const FeaturedPets = async () => {
     const baseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
     
     const res = await fetch(`${baseUrl}/featuredPets`, {
-      next: { revalidate: 3600 }, 
+      next: { revalidate: 3600 },
     });
 
     if (!res.ok) {
@@ -58,12 +58,11 @@ const FeaturedPets = async () => {
         <div className="flex-shrink-0">
           <Link href="/all-pets">
             <Button
-              // Changed variant from "bordered" to "ghost" to satisfy TypeScript
               variant="ghost" 
-              className="text-sm font-bold rounded-xl border-2 border-[#005f73] text-[#0a9396] hover:bg-[#005f73]/5 transition-colors h-11 px-5"
-              endContent={<MdOutlineArrowRightAlt size={20} />}
+              className="text-sm font-bold rounded-xl border-2 border-[#005f73] text-[#0a9396] hover:bg-[#005f73]/5 transition-colors h-11 px-5 flex items-center gap-2"
             >
               View All Pets
+              <MdOutlineArrowRightAlt size={20} />
             </Button>
           </Link>
         </div>

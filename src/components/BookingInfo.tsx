@@ -1,5 +1,5 @@
 "use client";
-import { Button, Card } from "@heroui/react";
+import { Card, buttonVariants } from "@heroui/react";
 import { DeleteAlert } from "./DeleteAlert";
 import Link from "next/link";
 import EditModal from "./edit-modal/EditModal";
@@ -31,15 +31,17 @@ const BookingInfo = ({ bookings = [] }: { bookings: Booking[] }) => {
           <h2 className="text-3xl font-bold tracking-tight text-slate-800">My Bookings</h2>
           <p className="text-slate-500 text-sm mt-1">Manage your upcoming and past medical appointments</p>
         </div>
-        <Button
-          as={Link as any} // Cast to any to resolve the TypeScript type mismatch
+        
+        {/* Usando Link com buttonVariants para corrigir o erro de tipo */}
+        <Link 
           href="/all-pets"
-          className="bg-[#0a9396] text-white font-semibold shadow-md hover:bg-[#005f73] transition-colors"
-          endContent={<Plus size={18} />}
-          radius="lg"
+          className={buttonVariants({ 
+            className: "bg-[#0a9396] text-white font-semibold shadow-md hover:bg-[#005f73] transition-colors",
+            radius: "lg"
+          })}
         >
-          New Appointment
-        </Button>
+          New Appointment <Plus size={18} />
+        </Link>
       </div>
 
       {/* Status Counters */}

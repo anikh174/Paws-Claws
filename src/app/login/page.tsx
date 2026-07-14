@@ -159,8 +159,8 @@ const LoginPage = () => {
         <div>
           <Button
             onClick={handleSignin}
-            variant="bordered"
-            className="w-full rounded-lg flex items-center justify-center gap-2 border-gray-300 hover:bg-gray-50"
+            variant="ghost" 
+            className="w-full rounded-lg flex items-center justify-center gap-2 border border-gray-300 hover:bg-gray-50"
           >
             <FcGoogle className="text-xl" /> Continue with Google
           </Button>

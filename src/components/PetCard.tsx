@@ -20,25 +20,12 @@ interface PetProps {
 }
 
 const PetCard = ({ pet }: PetProps) => {
-  const {
-    _id,
-    name,
-    breed,
-    age,
-    image,
-    location,
-    category,
-    status,
-    color,
-    size,
-  } = pet;
+  const { _id, name, breed, age, image, location, category, status, color, size } = pet;
 
   const petId = typeof _id === 'object' && _id !== null ? _id.$oid || String(_id) : _id;
 
   return (
-    <Card
-      className="group relative w-full max-w-[350px] overflow-hidden border border-gray-200 bg-white shadow-md transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_50px_rgba(0,0,0,0.1)]"
-    >
+    <Card className="group relative w-full max-w-[350px] overflow-hidden border border-gray-200 bg-white shadow-md transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_50px_rgba(0,0,0,0.1)]">
       {/* ইমেজ সেকশন */}
       <div className="relative h-[260px] w-full overflow-hidden bg-gray-50">
         <Image
@@ -50,16 +37,15 @@ const PetCard = ({ pet }: PetProps) => {
           className="object-cover transition-transform duration-500 group-hover:scale-105"
         />
         
-        {/* ক্যাটাগরি ব্যাজ - এখানে variant="flat" ব্যবহার করা হয়েছে */}
+        {/* ক্যাটাগরি ব্যাজ - updated to a supported variant */}
         <Chip
-          variant="flat" 
+          variant="primary"
           className="absolute right-3 top-3 bg-[#0a9396] text-xs font-semibold capitalize text-white"
         >
           {category}
         </Chip>
       </div>
 
-      {/* কার্ড হেডার ও কন্টেন্ট সেকশন */}
       <Card.Header className="px-5 pt-5 pb-1 flex flex-col items-start">
         <Card.Title className="text-xl font-bold tracking-tight text-gray-800 mb-1">
           {name}

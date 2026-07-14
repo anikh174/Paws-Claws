@@ -7,9 +7,9 @@ import {
   ModalHeader, 
   ModalBody, 
   ModalFooter, 
-  Button, 
   useDisclosure 
-} from "@heroui/modal"; // পরিবর্তন এখানে
+} from "@heroui/modal"; 
+import { Button } from "@heroui/button"; // Button এখান থেকে ইম্পোর্ট করতে হবে
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "react-toastify";

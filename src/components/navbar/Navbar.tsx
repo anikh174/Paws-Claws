@@ -58,16 +58,15 @@ const Navbar = () => {
             <div className="flex gap-3 items-center">
               <Avatar
                 className="w-10 h-10 text-sm border-2 border-warning cursor-pointer"
-              >
-                <Avatar.Image src={user?.image || ""} alt={user?.name || "User"} />
-                <Avatar.Fallback>{user?.name?.charAt(0) || "U"}</Avatar.Fallback>
-              </Avatar>
+                src={user?.image || ""}
+                name={user?.name || "User"}
+              />
 
               <div>
                 <Button 
                   onPress={handleLogout} 
-                  color={"danger" as any}
-                  variant={"ghost" as any} 
+                  color="danger"
+                  variant="ghost" 
                   className="rounded-lg font-semibold hover:opacity-90 transition-opacity"
                 >
                   Logout
@@ -83,7 +82,7 @@ const Navbar = () => {
               </Link>
               <Link href={"/register"}>
                 <Button
-                  variant={"outline" as any}
+                  variant="bordered"
                   className="rounded-lg border-amber-500 text-amber-600 hover:bg-amber-50 font-semibold"
                 >
                   Register

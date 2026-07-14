@@ -9,7 +9,7 @@ import {
   ModalFooter, 
   Button, 
   useDisclosure 
-} from "@heroui/react";
+} from "@heroui/modal"; // পরিবর্তন এখানে
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "react-toastify";
@@ -40,10 +40,10 @@ export function DeleteAlert({ booking }: BookingProps) {
       if (!res.ok) throw new Error("Failed to delete");
 
       toast.success('Delete successful');
-      onClose(); // মডালটি বন্ধ করার জন্য
+      onClose();
       
-      router.push('/dashboard'); // Client-side redirect-এর সঠিক নিয়ম
-      router.refresh(); // ডেটা রিফ্রেশ করার জন্য যেন ড্যাশবোর্ড আপডেট হয়
+      router.push('/dashboard');
+      router.refresh();
     } catch (error) {
       console.error(error);
       toast.error('Something went wrong!');
@@ -54,9 +54,8 @@ export function DeleteAlert({ booking }: BookingProps) {
 
   return (
     <>
-      {/* ট্রিগার বাটন */}
       <Button 
-        onPress={onOpen} // HeroUI বাটনে onClick-এর চেয়ে onPress বেস্ট
+        onPress={onOpen}
         variant="bordered" 
         className="rounded-lg border-2 border-red-500 text-red-500 hover:bg-red-50"
         startContent={<TrashBin />}
@@ -64,7 +63,6 @@ export function DeleteAlert({ booking }: BookingProps) {
         Delete
       </Button>
 
-      {/* HeroUI মডেল আর্কিটেকচার */}
       <Modal 
         isOpen={isOpen} 
         onOpenChange={onOpenChange}
@@ -87,13 +85,13 @@ export function DeleteAlert({ booking }: BookingProps) {
                 <Button 
                   variant="light" 
                   onPress={onCloseModal}
-                  disabled={isDeleting}
+                  isDisabled={isDeleting}
                 >
                   Cancel
                 </Button>
                 <Button 
                   color="danger" 
-                  isLoading={isDeleting} // ডিলিট হওয়ার সময় লোডিং অ্যানিমেশন দেখাবে
+                  isLoading={isDeleting}
                   onPress={handleDelete}
                 >
                   {isDeleting ? "Deleting..." : "Delete"}

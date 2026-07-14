@@ -32,12 +32,11 @@ const BookingInfo = ({ bookings = [] }: { bookings: Booking[] }) => {
           <p className="text-slate-500 text-sm mt-1">Manage your upcoming and past medical appointments</p>
         </div>
         
-        {/* Usando Link com buttonVariants para corrigir o erro de tipo */}
+        {/* Fix: radius remove kore className er moddhe rounded-lg diyechi */}
         <Link 
           href="/all-pets"
           className={buttonVariants({ 
-            className: "bg-[#0a9396] text-white font-semibold shadow-md hover:bg-[#005f73] transition-colors",
-            radius: "lg"
+            className: "bg-[#0a9396] text-white font-semibold shadow-md hover:bg-[#005f73] transition-colors rounded-lg"
           })}
         >
           New Appointment <Plus size={18} />

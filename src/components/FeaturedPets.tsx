@@ -23,11 +23,10 @@ const FeaturedPets = async () => {
   let errorMsg = "";
 
   try {
-    // 🛠️ NEXT_PUBLIC_CLIENT_URL পরিবর্তন করে NEXT_PUBLIC_API_URL করা হয়েছে (ব্যাকএন্ড লিংক)
     const baseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
     
     const res = await fetch(`${baseUrl}/featuredPets`, {
-      next: { revalidate: 3600 }, // ১ ঘণ্টা পর পর ডেটা রিফ্রেশ হবে
+      next: { revalidate: 3600 }, 
     });
 
     if (!res.ok) {
@@ -43,7 +42,6 @@ const FeaturedPets = async () => {
   return (
     <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-16 space-y-10">
       
-      {/* হেডার ও "View All" বাটন সেকশন */}
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 pb-4 border-b border-slate-100">
         <div className="space-y-2 max-w-2xl">
           <p className="text-[#0a9396] font-bold text-sm lg:text-base uppercase tracking-widest">
@@ -57,11 +55,11 @@ const FeaturedPets = async () => {
           </p>
         </div>
 
-        {/* Next.js 16 এ বাটনকে সুন্দরভাবে হ্যান্ডেল করতে Link দিয়ে র‍্যাপ করা হয়েছে */}
         <div className="flex-shrink-0">
           <Link href="/all-pets">
             <Button
-              variant="bordered"
+              // Changed variant from "bordered" to "ghost" to satisfy TypeScript
+              variant="ghost" 
               className="text-sm font-bold rounded-xl border-2 border-[#005f73] text-[#0a9396] hover:bg-[#005f73]/5 transition-colors h-11 px-5"
               endContent={<MdOutlineArrowRightAlt size={20} />}
             >
@@ -71,7 +69,6 @@ const FeaturedPets = async () => {
         </div>
       </div>
 
-      {/* পেটস কার্ডস গ্রিড বা এরর মেসেজ */}
       {errorMsg ? (
         <div className="text-center py-12 bg-red-50 rounded-2xl border border-dashed border-red-200">
           <p className="text-red-500 font-medium text-sm">{errorMsg}</p>

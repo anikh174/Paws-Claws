@@ -37,7 +37,6 @@ const PetCard = ({ pet }: PetProps) => {
           className="object-cover transition-transform duration-500 group-hover:scale-105"
         />
         
-        {/* ক্যাটাগরি ব্যাজ */}
         <Chip
           variant="primary"
           className="absolute right-3 top-3 bg-[#0a9396] text-xs font-semibold capitalize text-white"
@@ -58,7 +57,6 @@ const PetCard = ({ pet }: PetProps) => {
       <Card.Content className="px-5 pb-5 pt-0 text-gray-600">
         <div className="space-y-2 text-xs">
           <div className="flex items-center gap-2">
-            {/* Fixed: size prop replaced with width/height */}
             <MapPin width={14} height={14} className="text-gray-400" />
             <span className="capitalize">{location}</span>
             <span className="text-gray-400">•</span>
@@ -88,8 +86,7 @@ const PetCard = ({ pet }: PetProps) => {
       <Card.Footer className="p-3 bg-gray-50 border-t border-gray-100">
         <Link href={`/all-pets/${petId}`} className="w-full">
           <Button
-            className="w-full font-semibold text-white bg-[#0a9396] hover:bg-[#005f73] transition-colors duration-300 shadow-md"
-            radius="md"
+            className="w-full font-semibold text-white bg-[#0a9396] hover:bg-[#005f73] transition-colors duration-300 shadow-md rounded-md"
             endContent={<Heart width={16} height={16} className="fill-white/20" />}
           >
             Adopt Me

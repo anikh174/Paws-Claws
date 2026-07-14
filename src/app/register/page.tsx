@@ -159,7 +159,7 @@ const SignUpPage = () => {
         <div>
           <Button
             onClick={handleSignup}
-            variant="bordered"
+            variant="outline"
             className="w-full rounded-lg flex items-center justify-center gap-2 border-gray-300 hover:bg-gray-50"
           >
             <FcGoogle className="text-xl" /> Continue with Google

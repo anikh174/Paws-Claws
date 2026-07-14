@@ -21,7 +21,6 @@ interface PetDetails {
   image: string;
 }
 
-// প্রপস ইন্টারফেসে isOpen এবং onClose যোগ করা হয়েছে
 interface AdoptModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -77,7 +76,7 @@ const AdoptModal = ({ isOpen, onClose, petDetails }: AdoptModalProps) => {
       if (!res.ok) throw new Error("Submission failed");
 
       toast.success(`Adoption request submitted for ${petDetails.name}!`);
-      onClose(); // সাকসেস হলে মডাল বন্ধ হবে
+      onClose();
     } catch (error) {
       console.error(error);
       toast.error("Something went wrong. Please try again.");
@@ -134,7 +133,7 @@ const AdoptModal = ({ isOpen, onClose, petDetails }: AdoptModalProps) => {
                       <Label className="text-sm font-semibold text-gray-700">Previous Pet Ownership Experience?</Label>
                       <Select name="hasPetExperience" className="w-full mt-1">
                         <Select.Trigger>
-                          <Select.Value placeholder="Select an option" />
+                          <Select.Value>Select an option</Select.Value>
                         </Select.Trigger>
                         <Select.Popover>
                           <ListBox>

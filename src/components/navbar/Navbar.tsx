@@ -17,7 +17,6 @@ const Navbar = () => {
   };
 
   return (
-    // শ্যাডো কালার ডক্টর প্রজেক্টের সায়ান থেকে পরিবর্তন করে পেট-থিমের অ্যাম্বার (amber-500) করা হয়েছে
     <div className="z-50 fixed w-full top-0 left-0 shadow-md shadow-amber-500/10">
       <div className="navbar bg-base-100 shadow-sm px-4 md:px-8">
         
@@ -52,7 +51,6 @@ const Navbar = () => {
           
           <Link href="/" className="flex gap-2 items-center cursor-pointer">
             <Image src={"/logo.png"} height={40} width={40} alt="Paws & Claws Logo" className="object-contain" />
-            {/* ব্র্যান্ড নেম কালার পরিবর্তন করা হয়েছে */}
             <h1 className="text-lg md:text-2xl font-bold text-amber-600">
               Paws & Claws
             </h1>
@@ -72,16 +70,16 @@ const Navbar = () => {
         <div className="navbar-end">
           {user ? (
             <div className="flex gap-3 items-center">
-              {/* 🛠️ Fixed: কনসোল এরর এড়াতে প্রোপ বাদ দিয়ে Tailwind border ব্যবহার করা হয়েছে */}
+              {/* HeroUI v3 Avatar Fix */}
               <Avatar
                 color="warning"
-                name={user?.name?.charAt(0) || "U"}
-                src={user?.image || ""}
-                className="w-10 h-10 text-sm border-2 border-warning"
-              />
+                className="w-10 h-10 text-sm border-2 border-warning cursor-pointer"
+              >
+                <Avatar.Image src={user?.image || ""} alt={user?.name || "User"} />
+                <Avatar.Fallback>{user?.name?.charAt(0) || "U"}</Avatar.Fallback>
+              </Avatar>
 
               <div>
-                {/* HeroUI-তে variant="flat" এবং color="danger" ব্যবহার করা হয়েছে */}
                 <Button 
                   onClick={handleLogout} 
                   color="danger"
@@ -112,7 +110,6 @@ const Navbar = () => {
             </div>
           )}
         </div>
-
       </div>
     </div>
   );

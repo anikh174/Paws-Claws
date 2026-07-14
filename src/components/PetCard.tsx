@@ -38,7 +38,7 @@ const PetCard = ({ pet }: PetProps) => {
         />
         
         <Chip
-          variant="solid"
+          variant="primary"
           className="absolute right-3 top-3 bg-[#0a9396] text-xs font-semibold capitalize text-white"
         >
           {category}

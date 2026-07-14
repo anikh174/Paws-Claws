@@ -152,7 +152,7 @@ const AdoptModal = ({ isOpen, onClose, petDetails }: AdoptModalProps) => {
 
                   <Button
                     type="submit"
-                    disabled={isSubmitting}
+                    isDisabled={isSubmitting}
                     className="bg-[#0a9396] hover:bg-[#005f73] text-white font-bold rounded-xl w-full py-3 mt-4"
                   >
                     {isSubmitting ? "Submitting..." : "Submit Application"}

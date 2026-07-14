@@ -135,14 +135,14 @@ const LoginPage = () => {
           <Button
             className="w-full rounded-lg bg-gradient-to-r from-[#005f73]/90 to-[#0a9396] text-white font-semibold shadow-md mt-2"
             type="submit"
-            isPending={isLoading} // এখানে isLoading পরিবর্তন করে isPending করা হয়েছে
+            isPending={isLoading}
           >
             {isLoading ? "Logging in..." : "Log In"}
           </Button>
 
           <Button
             type="button"
-            variant="flat"
+            variant="ghost"
             className="w-full rounded-lg bg-gray-100 text-gray-700 font-medium hover:bg-gray-200"
             onClick={handleDemoLogin}
           >

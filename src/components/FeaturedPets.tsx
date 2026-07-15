@@ -23,7 +23,7 @@ const FeaturedPets = async () => {
   let errorMsg = "";
 
   try {
-    const baseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+    const baseUrl = process.env.NEXT_PUBLIC_API_URL || "https://paws-claws-server.vercel.app";
     
     const res = await fetch(`${baseUrl}/featuredPets`, {
       next: { revalidate: 3600 },

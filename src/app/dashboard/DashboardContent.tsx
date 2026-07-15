@@ -26,7 +26,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({ bookings }) => {
 
   const fetchAllPets = async () => {
     try {
-      const res = await fetch("http://localhost:5000/admin/all-pets");
+      const res = await fetch("https://paws-claws-server.vercel.app/admin/all-pets");
       const data = await res.json();
       setAllPets(data);
     } catch (error) {
@@ -47,7 +47,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({ bookings }) => {
 
     if (result.isConfirmed) {
       try {
-        const res = await fetch(`http://localhost:5000/pets/${id}`, {
+        const res = await fetch(`https://paws-claws-server.vercel.app/pets/${id}`, {
           method: "DELETE",
         });
         if (res.ok) {

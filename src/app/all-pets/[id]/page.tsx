@@ -31,7 +31,7 @@ const PetDetailsPage = async ({ params }: PetDetailsProps) => {
   let fetchError: string | null = null;
 
   try {
-    const baseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+    const baseUrl = process.env.NEXT_PUBLIC_API_URL || "https://paws-claws-server.vercel.app";
     const res = await fetch(`${baseUrl}/pets/${id}`, { cache: "no-store" });
     
     if (res.ok) {

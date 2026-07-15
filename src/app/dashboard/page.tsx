@@ -24,7 +24,7 @@ const DashboardPage = async () => {
 
   try {
     // সরাসরি MongoDB কল না করে Express API-তে রিকোয়েস্ট পাঠানো হচ্ছে
-    const res = await fetch(`http://localhost:5000/adoptions?userId=${session.user.id}`, {
+    const res = await fetch(`https://paws-claws-server.vercel.app/adoptions?userId=${session.user.id}`, {
       headers: {
         // Better-Auth সেশন টোকেনটি Express-এর verifyToken মিডলওয়্যারের জন্য পাঠানো হচ্ছে
         Authorization: `Bearer ${session.session.token}`, 

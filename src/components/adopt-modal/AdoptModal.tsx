@@ -64,7 +64,7 @@ const AdoptModal = ({ isOpen, onClose, petDetails }: AdoptModalProps) => {
       adoptionData.petName = petDetails.name;
       adoptionData.userId = sessionData.user.id;
 
-      const res = await fetch(`${process.env.NEXT_PUBLIC_CLIENT_URL || 'http://localhost:5000'}/adoptions`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_CLIENT_URL || 'https://paws-claws-server.vercel.app'}/adoptions`, {
         method: "POST",
         headers: {
           "content-type": "application/json",

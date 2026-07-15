@@ -24,7 +24,7 @@ const AllPetsPage = () => {
   const fetchPets = async () => {
     setLoading(true);
     const queryStr = searchParams.toString();
-    const baseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+    const baseUrl = process.env.NEXT_PUBLIC_API_URL || "https://paws-claws-server.vercel.app";
     
     try {
       const res = await fetch(`${baseUrl}/pets?${queryStr}`);

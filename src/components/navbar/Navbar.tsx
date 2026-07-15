@@ -1,88 +1,94 @@
 "use client";
-import Image from "next/image";
+
 import React from "react";
-import NavLink from "./Navlink";
-import { Avatar, Button } from "@heroui/react";
+import Image from "next/image";
 import Link from "next/link";
 import { toast } from "react-toastify";
+import { Avatar, Button } from "@heroui/react";
+import NavLink from "./Navlink";
 import { authClient } from "../../lib/auth-client";
 
 const Navbar = () => {
-  const { data: session } = authClient.useSession();
+  const { data: session, isPending } = authClient.useSession();
   const user = session?.user;
 
   const handleLogout = async () => {
-    await authClient.signOut();
-    toast.warn("Logout successful");
+    try {
+      await authClient.signOut({
+        fetchOptions: {
+          onSuccess: () => {
+            toast.warn("Logged out successfully");
+            window.location.href = "/";
+          },
+        },
+      });
+    } catch (error) {
+      toast.error("Logout failed, please try again");
+    }
   };
 
   return (
-    <div className="z-50 fixed w-full top-0 left-0 shadow-md shadow-amber-500/10">
-      <div className="navbar bg-base-100 shadow-sm px-4 md:px-8">
-        
+    <nav className="fixed top-0 left-0 w-full z-50 bg-white/80 backdrop-blur-md shadow-md shadow-amber-500/10">
+      <div className="max-w-7xl mx-auto navbar px-4 md:px-8">
+        {/* Navbar Start */}
         <div className="navbar-start">
           <div className="dropdown">
-            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden" aria-label="Open Menu">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <label tabIndex={0} className="btn btn-ghost lg:hidden">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" />
               </svg>
-            </div>
-            <ul tabIndex={0} className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow gap-2 text-md font-semibold">
-              <NavLink href={"/"}>Home</NavLink>
-              <NavLink href={"/all-pets"}>Find a Pet</NavLink>
-              <NavLink href={"/dashboard"}>Dashboard</NavLink>
+            </label>
+            <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-4 shadow bg-white rounded-box w-52 gap-2 text-md font-semibold">
+              <li><NavLink href="/">Home</NavLink></li>
+              <li><NavLink href="/all-pets">Find a Pet</NavLink></li>
+              <li><NavLink href="/dashboard">Dashboard</NavLink></li>
             </ul>
           </div>
-          
           <Link href="/" className="flex gap-2 items-center cursor-pointer">
-            <Image src={"/logo.png"} height={40} width={40} alt="Paws & Claws Logo" className="object-contain" />
-            <h1 className="text-lg md:text-2xl font-bold text-amber-600">
-              Paws & Claws
-            </h1>
+            <Image src="/logo.png" height={40} width={40} alt="Paws & Claws Logo" className="object-contain" priority />
+            <span className="text-xl md:text-2xl font-bold text-amber-600 hidden md:block">Paws & Claws</span>
           </Link>
         </div>
 
+        {/* Navbar Center */}
         <div className="navbar-center hidden lg:flex">
-          <ul className="flex items-center gap-6 text-lg font-bold menu menu-horizontal px-1">
-            <NavLink href={"/"}>Home</NavLink>
-            <NavLink href={"/all-pets"}>Find a Pet</NavLink>
-            <NavLink href={"/dashboard"}>Dashboard</NavLink>
+          <ul className="flex items-center gap-8 text-lg font-bold">
+            <li><NavLink href="/">Home</NavLink></li>
+            <li><NavLink href="/all-pets">Find a Pet</NavLink></li>
+            <li><NavLink href="/dashboard">Dashboard</NavLink></li>
           </ul>
         </div>
 
+        {/* Navbar End */}
         <div className="navbar-end">
-          {user ? (
-            <div className="flex gap-3 items-center">
-              {/* Type error এড়াতে (as any) ব্যবহার করা হয়েছে */}
-              <Avatar
-                className="w-10 h-10 text-sm border-2 border-warning cursor-pointer"
-                src={user?.image || ""}
-                name={user?.name || "User"}
-                {...({} as any)}
-              />
+          {isPending ? (
+            <div className="w-10 h-10 rounded-full bg-gray-200 animate-pulse" />
+          ) : user ? (
+            <div className="flex gap-4 items-center">
+              <Avatar className="w-10 h-10 border-2 border-amber-400 cursor-pointer">
+                <Avatar.Image src={user.image ?? ""} alt={user.name ?? "User"} />
+                <Avatar.Fallback>
+                  {(user.name ?? "U").charAt(0).toUpperCase()}
+                </Avatar.Fallback>
+              </Avatar>
 
-              <div>
-                <Button 
-                  onPress={handleLogout} 
-                  variant={"ghost" as any} 
-                  className="rounded-lg font-semibold hover:opacity-90 transition-opacity"
-                >
-                  Logout
-                </Button>
-              </div>
+              <Button 
+                onPress={handleLogout} 
+                variant="ghost" 
+                className="rounded-lg font-semibold"
+              >
+                Logout
+              </Button>
             </div>
           ) : (
-            <div className="flex gap-2">
-              <Link href={"/login"}>
-                <Button className="rounded-lg bg-gradient-to-r from-amber-500 to-orange-500 text-white font-semibold shadow-md shadow-amber-500/20">
+            <div className="flex gap-3">
+              <Link href="/login">
+                <Button className="rounded-lg bg-gradient-to-r from-amber-500 to-orange-500 text-white font-semibold">
                   Login
                 </Button>
               </Link>
-              <Link href={"/register"}>
-                <Button
-                  variant={"bordered" as any}
-                  className="rounded-lg border-amber-500 text-amber-600 hover:bg-amber-50 font-semibold"
-                >
+              <Link href="/register">
+                <Button variant="outline" className="rounded-lg border-amber-500 text-amber-600 font-semibold">
                   Register
                 </Button>
               </Link>
@@ -90,7 +96,7 @@ const Navbar = () => {
           )}
         </div>
       </div>
-    </div>
+    </nav>
   );
 };
 

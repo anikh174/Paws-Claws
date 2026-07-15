@@ -34,13 +34,14 @@ const LoginPage = () => {
       const { data, error } = await authClient.signIn.email({
         email,
         password,
+      }, {
+        // কিছু ক্ষেত্রে সেশন আপডেট হওয়ার জন্য এটি প্রয়োজন হতে পারে
+        onSuccess: () => {
+          toast.success("Login Successful");
+          // হার্ড রিলোড নিশ্চিত করতে window.location ব্যবহার করুন
+          window.location.href = "/dashboard";
+        },
       });
-
-      if (data) {
-        toast.success("Login Successful");
-        router.push("/dashboard");
-        router.refresh();
-      }
 
       if (error) {
         toast.error(error.message || "Something went wrong");

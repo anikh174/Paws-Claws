@@ -13,14 +13,12 @@ import {
 } from "@heroui/react";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useState, FormEvent } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { toast } from "react-toastify";
 
 const SignUpPage = () => {
-  const router = useRouter();
   const [isShowPassword, setIsShowPassword] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -42,8 +40,8 @@ const SignUpPage = () => {
 
       if (data) {
         toast.success("Registration successful");
-        router.push("/dashboard");
-        router.refresh();
+        // হার্ড রিলোড নিশ্চিত করতে window.location ব্যবহার করুন
+        window.location.href = "/dashboard";
       }
 
       if (error) {
@@ -159,8 +157,8 @@ const SignUpPage = () => {
         <div>
           <Button
             onClick={handleSignup}
-            variant="outline"
-            className="w-full rounded-lg flex items-center justify-center gap-2 border-gray-300 hover:bg-gray-50"
+            variant="ghost"
+            className="w-full rounded-lg flex items-center justify-center gap-2 border border-gray-300 hover:bg-gray-50"
           >
             <FcGoogle className="text-xl" /> Continue with Google
           </Button>

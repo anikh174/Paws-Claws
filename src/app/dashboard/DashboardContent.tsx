@@ -5,7 +5,6 @@ import ProfileInfo from "@/components/ProfileInfo";
 import ManageItems, { Pet } from "@/components/ManageItems";
 import Swal from "sweetalert2";
 
-// ডাটাবেস অনুযায়ী টাইপ সেট করা
 export interface AdoptionBooking {
   _id: string;
   petId: string;
@@ -16,7 +15,7 @@ export interface AdoptionBooking {
 }
 
 interface DashboardContentProps {
-  bookings: AdoptionBooking[]; // Parent থেকে আসা ডাটা
+  bookings: AdoptionBooking[];
 }
 
 type TabType = "adoptions" | "profile" | "manage";
@@ -25,7 +24,6 @@ const DashboardContent: React.FC<DashboardContentProps> = ({ bookings }) => {
   const [activeTab, setActiveTab] = useState<TabType>("adoptions");
   const [allPets, setAllPets] = useState<Pet[]>([]);
 
-  // সব পেটস ফেচ করার ফাংশন
   const fetchAllPets = async () => {
     try {
       const res = await fetch("https://paws-claws-server.vercel.app/admin/all-pets");
@@ -99,29 +97,52 @@ const DashboardContent: React.FC<DashboardContentProps> = ({ bookings }) => {
       <div className="flex-1">
         {activeTab === "adoptions" && (
           <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-            <h2 className="p-6 text-xl font-bold border-b border-gray-100">Your Adoption Applications</h2>
-            <div className="overflow-x-auto">
-              <table className="w-full text-left min-w-[600px]">
-                <thead className="bg-gray-50 text-gray-500 text-xs uppercase">
-                  <tr>
-                    <th className="px-6 py-4">Pet Name</th>
-                    <th className="px-6 py-4">Status</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-100">
-                  {bookings?.map((booking) => (
-                    <tr key={booking._id}>
-                      <td className="px-6 py-4 font-bold">{booking.petName}</td>
-                      <td className="px-6 py-4">
-                        <span className={`px-3 py-1 rounded-full text-[11px] font-bold ${getStatusColor(booking.status)}`}>
-                          {booking.status}
-                        </span>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+            <div className="p-6 border-b border-gray-100 flex justify-between items-center">
+              <h2 className="text-xl font-bold text-gray-800">Your Adoption Applications</h2>
+              <span className="text-sm text-gray-500 bg-gray-50 px-3 py-1 rounded-md">
+                Total: {bookings?.length || 0}
+              </span>
             </div>
+
+            {bookings && bookings.length > 0 ? (
+              <div className="overflow-x-auto">
+                <table className="w-full text-left border-separate border-spacing-y-3 px-6">
+                  <thead>
+                    <tr className="text-gray-400 text-xs uppercase tracking-wider">
+                      <th className="px-6 py-3 font-medium">Pet Name</th>
+                      <th className="px-6 py-3 font-medium">Status</th>
+                      <th className="px-6 py-3 font-medium text-right">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {bookings.map((booking) => (
+                      <tr 
+                        key={booking._id} 
+                        className="bg-gray-50/50 hover:bg-gray-50 transition-all rounded-lg border border-gray-100"
+                      >
+                        <td className="px-6 py-4 font-semibold text-gray-700 rounded-l-xl">
+                          {booking.petName}
+                        </td>
+                        <td className="px-6 py-4">
+                          <span className={`px-4 py-1.5 rounded-full text-[11px] font-bold tracking-wide uppercase ${getStatusColor(booking.status)}`}>
+                            {booking.status}
+                          </span>
+                        </td>
+                        <td className="px-6 py-4 text-right rounded-r-xl">
+                          <button className="text-[#0a9396] hover:underline text-sm font-medium">
+                            View Details
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            ) : (
+              <div className="p-12 text-center text-gray-500">
+                <p>No adoption applications found yet.</p>
+              </div>
+            )}
           </div>
         )}
 

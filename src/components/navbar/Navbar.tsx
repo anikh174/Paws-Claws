@@ -64,7 +64,6 @@ const Navbar = () => {
               <div>
                 <Button 
                   onPress={handleLogout} 
-                  color={"danger" as any}
                   variant={"ghost" as any} 
                   className="rounded-lg font-semibold hover:opacity-90 transition-opacity"
                 >

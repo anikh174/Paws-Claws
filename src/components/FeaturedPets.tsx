@@ -4,8 +4,8 @@ import { Button } from "@heroui/react";
 import { MdOutlineArrowRightAlt } from "react-icons/md";
 import Link from "next/link";
 
-// পেটস ডেটা টাইপ ইন্টারফেস
-interface Pet {
+// Pet ইন্টারফেসটি এখান থেকে এক্সপোর্ট করা বা PetCard থেকে ইমপোর্ট করা ভালো
+export interface Pet {
   _id: string;
   name: string;
   breed: string;
@@ -25,12 +25,13 @@ const FeaturedPets = async () => {
   try {
     const baseUrl = process.env.NEXT_PUBLIC_API_URL || "https://paws-claws-server.vercel.app";
     
+    // ডাটা ক্যাশ এড়ানোর জন্য cache: "no-store" ব্যবহার করা হয়েছে
     const res = await fetch(`${baseUrl}/featuredPets`, {
-      next: { revalidate: 3600 },
+      cache: "no-store", 
     });
 
     if (!res.ok) {
-      throw new Error(`Server responded with status: ${res.status}`);
+      throw new Error(`Failed to fetch: ${res.status}`);
     }
 
     pets = await res.json();

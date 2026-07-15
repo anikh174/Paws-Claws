@@ -5,11 +5,16 @@ import ProfileInfo from "@/components/ProfileInfo";
 import ManageItems, { Pet } from "@/components/ManageItems";
 import Swal from "sweetalert2";
 
+// ইন্টারফেসে নতুন ফিল্ডগুলো যোগ করা হয়েছে
 export interface AdoptionBooking {
   _id: string;
   petId: string;
   petName: string;
   applicantName: string;
+  applicantEmail: string;
+  applicantPhone: string;
+  address: string;
+  motivation: string;
   status: "pending" | "approved" | "rejected";
   createdAt: string;
 }
@@ -23,6 +28,7 @@ type TabType = "adoptions" | "profile" | "manage";
 const DashboardContent: React.FC<DashboardContentProps> = ({ bookings }) => {
   const [activeTab, setActiveTab] = useState<TabType>("adoptions");
   const [allPets, setAllPets] = useState<Pet[]>([]);
+  const [selectedBooking, setSelectedBooking] = useState<AdoptionBooking | null>(null);
 
   const fetchAllPets = async () => {
     try {
@@ -99,9 +105,6 @@ const DashboardContent: React.FC<DashboardContentProps> = ({ bookings }) => {
           <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
             <div className="p-6 border-b border-gray-100 flex justify-between items-center">
               <h2 className="text-xl font-bold text-gray-800">Your Adoption Applications</h2>
-              <span className="text-sm text-gray-500 bg-gray-50 px-3 py-1 rounded-md">
-                Total: {bookings?.length || 0}
-              </span>
             </div>
 
             {bookings && bookings.length > 0 ? (
@@ -109,27 +112,25 @@ const DashboardContent: React.FC<DashboardContentProps> = ({ bookings }) => {
                 <table className="w-full text-left border-separate border-spacing-y-3 px-6">
                   <thead>
                     <tr className="text-gray-400 text-xs uppercase tracking-wider">
-                      <th className="px-6 py-3 font-medium">Pet Name</th>
-                      <th className="px-6 py-3 font-medium">Status</th>
-                      <th className="px-6 py-3 font-medium text-right">Action</th>
+                      <th className="px-6 py-3">Pet Name</th>
+                      <th className="px-6 py-3">Status</th>
+                      <th className="px-6 py-3 text-right">Action</th>
                     </tr>
                   </thead>
                   <tbody>
                     {bookings.map((booking) => (
-                      <tr 
-                        key={booking._id} 
-                        className="bg-gray-50/50 hover:bg-gray-50 transition-all rounded-lg border border-gray-100"
-                      >
-                        <td className="px-6 py-4 font-semibold text-gray-700 rounded-l-xl">
-                          {booking.petName}
-                        </td>
+                      <tr key={booking._id} className="bg-gray-50/50 hover:bg-gray-50 rounded-lg border border-gray-100">
+                        <td className="px-6 py-4 font-semibold text-gray-700">{booking.petName}</td>
                         <td className="px-6 py-4">
-                          <span className={`px-4 py-1.5 rounded-full text-[11px] font-bold tracking-wide uppercase ${getStatusColor(booking.status)}`}>
+                          <span className={`px-4 py-1 rounded-full text-[11px] font-bold uppercase ${getStatusColor(booking.status)}`}>
                             {booking.status}
                           </span>
                         </td>
-                        <td className="px-6 py-4 text-right rounded-r-xl">
-                          <button className="text-[#0a9396] hover:underline text-sm font-medium">
+                        <td className="px-6 py-4 text-right">
+                          <button 
+                            onClick={() => setSelectedBooking(booking)}
+                            className="text-[#0a9396] hover:underline font-medium text-sm"
+                          >
                             View Details
                           </button>
                         </td>
@@ -139,17 +140,34 @@ const DashboardContent: React.FC<DashboardContentProps> = ({ bookings }) => {
                 </table>
               </div>
             ) : (
-              <div className="p-12 text-center text-gray-500">
-                <p>No adoption applications found yet.</p>
-              </div>
+              <p className="p-10 text-center text-gray-500">No applications found.</p>
             )}
           </div>
         )}
 
-        {activeTab === "manage" && (
-          <ManageItems pets={allPets} onDelete={handleDelete} />
+        {/* Modal for Details */}
+        {selectedBooking && (
+          <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+            <div className="bg-white rounded-2xl p-8 max-w-lg w-full shadow-2xl">
+              <h3 className="text-2xl font-bold mb-6 text-[#0a9396]">Application Details</h3>
+              <div className="space-y-4 text-gray-700">
+                <p><strong>Applicant:</strong> {selectedBooking.applicantName}</p>
+                <p><strong>Phone:</strong> {selectedBooking.applicantPhone}</p>
+                <p><strong>Address:</strong> {selectedBooking.address}</p>
+                <p><strong>Motivation:</strong> {selectedBooking.motivation}</p>
+                <p><strong>Pet Applied For:</strong> {selectedBooking.petName}</p>
+              </div>
+              <button 
+                onClick={() => setSelectedBooking(null)}
+                className="mt-8 w-full bg-[#0a9396] text-white py-3 rounded-xl font-bold hover:bg-[#087f81] transition"
+              >
+                Close
+              </button>
+            </div>
+          </div>
         )}
 
+        {activeTab === "manage" && <ManageItems pets={allPets} onDelete={handleDelete} />}
         {activeTab === "profile" && <ProfileInfo />}
       </div>
     </div>

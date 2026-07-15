@@ -1,232 +1,307 @@
-# 🏥 DocAppoint — Doctor Appointment Booking System
+<div align="center">
 
-**Live Site:** [https://docappoint.vercel.app](https://doc-appoint-vert.vercel.app/)
+# 🐾 Paws & Claws
 
-> Bangladesh's trusted platform for finding and booking doctor appointments online. Connect with 500+ verified specialists, manage bookings, and take control of your healthcare journey — all in one place.
+### A Modern Pet Adoption & Care Platform
 
----
+Find your perfect companion, adopt responsibly, and explore trusted pet care resources through a secure, modern, and responsive web application.
 
-## ✨ Key Features
+![Next.js](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38BDF8?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![Better Auth](https://img.shields.io/badge/Better_Auth-Secure-success?style=for-the-badge)
+![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)
 
-- 🔐 **Secure Authentication** — Email/password login & Google OAuth via Better Auth (JWT-based sessions). Private routes are fully protected and persist on page reload.
-- 📅 **Smart Appointment Booking** — Browse verified doctors by specialty, view full profiles, and book appointments instantly with a clean modal form.
-- 👤 **Personal Dashboard** — Logged-in users can view, update, and delete their own appointments in real time — no page reload required.
-- 🔍 **Search & Filter** — Instantly search doctors by name and filter by medical specialty on the All Appointments page.
-- ⭐ **Doctor Reviews** — Patients can leave star ratings and reviews for doctors after completing an appointment.
-
----
-
-## 🛠️ Tech Stack
-
-### Client
-| Technology | Purpose |
-|---|---|
-| React 18 | UI framework |
-| React Router v6 | Client-side routing |
-| Tailwind CSS | Styling |
-| Axios | HTTP requests |
-| React Hot Toast | Notifications |
-| Swiper.js | Hero banner slider |
-| React Helmet | SEO metadata per page |
-
-### Server
-| Technology | Purpose |
-|---|---|
-| Node.js | Runtime |
-| Express.js | REST API framework |
-| MongoDB | Database |
-| Mongoose | ODM |
-| Better Auth | Authentication (JWT/session) |
-| CORS | Cross-origin configuration |
-| dotenv | Environment variables |
+</div>
 
 ---
 
-## 🚀 Getting Started
+## 📖 Overview
 
-### Prerequisites
+**Paws & Claws** is a production-ready Full Stack Pet Adoption & Care Platform built with **Next.js 15**, **TypeScript**, **Native MongoDB Driver**, and **Better Auth**.
 
-- Node.js v18+
-- MongoDB Atlas account (or local MongoDB)
-- Google OAuth credentials (for social login)
+The platform helps users discover pets available for adoption, view detailed information, securely authenticate, add adoption listings, manage their own listings, and explore useful pet care resources through a modern, responsive interface.
 
-### 1. Clone the Repository
+---
 
-```bash
-git clone https://github.com/anikh174/doc-appoint.git
-cd docappoint
+# ✨ Features
+
+### 🏠 Public Features
+
+- Beautiful responsive landing page
+- Interactive Hero section
+- Browse available pets
+- Advanced search & filtering
+- Sorting options
+- Pagination
+- Pet details page
+- Related pets
+- Statistics dashboard
+- Testimonials
+- FAQ section
+- Newsletter subscription
+- About page
+- Contact page
+
+---
+
+### 🔐 Authentication
+
+- Better Auth Authentication
+- Secure Session Management
+- Login & Registration
+- Protected Routes
+- Form Validation
+- Error Handling
+- Demo Login
+- Google Login (Optional)
+
+---
+
+### 🐶 Pet Management
+
+Authenticated users can:
+
+- Add new pet listings
+- Manage their own pets
+- Delete listings
+- View complete details
+- Upload pet image URL
+- Manage adoption information
+
+---
+
+### 📊 Dashboard
+
+Interactive analytics using Recharts
+
+- Total Pets
+- Available Pets
+- Adopted Pets
+- Adoption Statistics
+
+---
+
+### 🎨 UI/UX
+
+- Fully Responsive
+- Clean Modern Design
+- Skeleton Loaders
+- Reusable Components
+- Consistent Design System
+- Smooth Animations
+- Accessible Interface
+
+---
+
+# 🛠 Tech Stack
+
+## Frontend
+
+- Next.js 15 (App Router)
+- React 19
+- TypeScript
+- Tailwind CSS
+- Recharts
+- Lucide React
+
+## Backend
+
+- Next.js Server Actions
+- API Routes
+- TypeScript
+- Native MongoDB Driver
+- Better Auth
+
+## Database
+
+- MongoDB Atlas
+
+## Authentication
+
+- Better Auth
+- Secure Cookies
+- Session Authentication
+
+---
+
+# 📂 Folder Structure
+
+```
+src/
+│
+├── app/
+│   ├── (public)
+│   ├── (dashboard)
+│   ├── api
+│   └── auth
+│
+├── components/
+│
+├── lib/
+│
+├── hooks/
+│
+├── services/
+│
+├── types/
+│
+├── utils/
+│
+├── providers/
+│
+└── styles/
 ```
 
-### 2. Setup the Server
+---
+
+# 🚀 Pages
+
+## Public
+
+- Home
+- Explore Pets
+- Pet Details
+- About
+- Contact
+- Login
+- Register
+
+---
+
+## Protected
+
+- Dashboard
+- Add Pet
+- Manage Pets
+- Profile
+
+---
+
+# 📸 Core Functionalities
+
+✔ Search Pets
+
+✔ Filter by Category
+
+✔ Filter by Location
+
+✔ Sort Pets
+
+✔ Pagination
+
+✔ Secure Authentication
+
+✔ Protected Dashboard
+
+✔ Add Pet
+
+✔ Delete Pet
+
+✔ Responsive UI
+
+✔ Analytics Dashboard
+
+✔ Skeleton Loading
+
+---
+
+# ⚙ Environment Variables
+
+Create a `.env.local` file in the root directory.
+
+```env
+MONGODB_URI=
+
+BETTER_AUTH_SECRET=
+
+BETTER_AUTH_URL=http://localhost:3000
+
+GOOGLE_CLIENT_ID=
+
+GOOGLE_CLIENT_SECRET=
+```
+
+---
+
+# 📦 Installation
+
+Clone the repository
 
 ```bash
-cd server
+git clone https://github.com/your-username/paws-claws.git
+```
+
+Move into the project
+
+```bash
+cd paws-claws
+```
+
+Install dependencies
+
+```bash
 npm install
 ```
 
-Create a `.env` file in the `server/` directory:
-
-```env
-PORT=5000
-MONGODB_URI=secret
-JWT_SECRET=secret
-GOOGLE_CLIENT_ID=your_google_client_id
-GOOGLE_CLIENT_SECRET=your_google_client_secret
-CLIENT_URL=http://localhost:3000
-```
-
-Seed the database:
-
-```bash
-node seed.js
-```
-
-Start the server:
+Run the development server
 
 ```bash
 npm run dev
 ```
 
-### 3. Setup the Client
+Build production
 
 ```bash
-cd ../client
-npm install
+npm run build
 ```
 
-Create a `.env` file in the `client/` directory:
+---
 
-```env
-VITE_API_URL=http://localhost:5000
-VITE_GOOGLE_CLIENT_ID=your_google_client_id
-```
+# 📈 Future Improvements
 
-Start the client:
-
-```bash
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+- Pet Adoption Request System
+- Favorites / Wishlist
+- Pet Care Blog
+- Email Notifications
+- Admin Dashboard
+- Pet Health Records
+- Chat Between Adopter & Owner
+- Dark Mode
+- Image Upload Support
+- Pet Vaccination Tracker
 
 ---
 
-## 🔑 Environment Variables
+# 🤝 Contributing
 
-| Variable | Location | Description |
-|---|---|---|
-| `MONGODB_URI` | server | MongoDB connection string |
-| `JWT_SECRET` | server | Secret key for signing JWTs |
-| `GOOGLE_CLIENT_ID` | server + client | Google OAuth client ID |
-| `GOOGLE_CLIENT_SECRET` | server | Google OAuth client secret |
-| `CLIENT_URL` | server | Frontend URL for CORS |
-| `VITE_API_URL` | client | Backend API base URL |
+Contributions are welcome!
+
+Feel free to fork the repository, create a feature branch, and submit a Pull Request.
 
 ---
 
-## 📡 API Endpoints
+# 👨‍💻 Author
 
-### Doctors
-| Method | Endpoint | Description | Auth |
-|---|---|---|---|
-| GET | `/api/doctors` | Get all doctors | Public |
-| GET | `/api/doctors/:id` | Get doctor by ID | Public |
-| GET | `/api/doctors/top-rated` | Get top 3 rated doctors | Public |
+**Anik Hossain**
 
-### Appointments
-| Method | Endpoint | Description | Auth |
-|---|---|---|---|
-| GET | `/api/appointments` | Get all appointments | Public |
-| GET | `/api/appointments/my` | Get logged-in user's bookings | 🔒 Private |
-| POST | `/api/appointments` | Book a new appointment | 🔒 Private |
-| PUT | `/api/appointments/:id` | Update an appointment | 🔒 Private |
-| DELETE | `/api/appointments/:id` | Delete an appointment | 🔒 Private |
-
-### Auth
-| Method | Endpoint | Description |
-|---|---|---|
-| POST | `/api/auth/register` | Register new user |
-| POST | `/api/auth/login` | Login with email/password |
-| POST | `/api/auth/google` | Google OAuth login |
-| GET | `/api/auth/me` | Get current user |
-
-### Reviews
-| Method | Endpoint | Description | Auth |
-|---|---|---|---|
-| GET | `/api/reviews/:doctorId` | Get reviews for a doctor | Public |
-| POST | `/api/reviews` | Post a review | 🔒 Private |
+- GitHub: https://github.com/anikh174
+- LinkedIn: https://linkedin.com/in/anik-hossain174
+- Portfolio: https://anikportfolio-lac.vercel.app
 
 ---
 
-## 🔒 Authentication Flow
+# ⭐ Support
 
-```
-User submits login form
-        ↓
-Server validates credentials
-        ↓
-JWT token issued & stored in localStorage
-        ↓
-Token sent in Authorization header on every request
-        ↓
-Server middleware verifies token on protected routes
-        ↓
-Logged-in user persists on page reload via token check
-```
+If you like this project, don't forget to ⭐ the repository.
 
-Password validation rules enforced on registration:
-- Minimum **6 characters**
-- At least **1 uppercase** letter
-- At least **1 lowercase** letter
+It helps a lot and motivates future development.
 
 ---
 
-## 🌐 Deployment
+<div align="center">
 
-### Client → Vercel
+Made with ❤️ using Next.js 15, TypeScript, MongoDB & Better Auth
 
-1. Push `client/` to GitHub
-2. Import project in [vercel.com](https://doc-appoint-vert.vercel.app/)
-3. Set environment variables in Vercel dashboard
-4. Deploy — Vercel handles SPA routing automatically
-
-### Server → Render
-
-1. Push `server/` to GitHub
-2. Create a new **Web Service** on [render.com](https://doc-appoint-server-self.vercel.app/)
-3. Set environment variables in Render dashboard
-4. Build command: `npm install`
-5. Start command: `node index.js`
-
-> **Note:** Add all routes to the Vercel `vercel.json` to prevent 404 on reload:
-> ```json
-> { "rewrites": [{ "source": "/(.*)", "destination": "/" }] }
-> ```
-
----
-
-## 🧩 Pages Overview
-
-| Page | Route | Access |
-|---|---|---|
-| Home | `/` | Public |
-| All Appointments | `/appointments` | Public |
-| Doctor Details | `/appointments/:id` | 🔒 Login required |
-| Login | `/login` | Public |
-| Register | `/register` | Public |
-| Dashboard | `/dashboard` | 🔒 Private |
-| My Bookings | `/dashboard/bookings` | 🔒 Private |
-| My Profile | `/dashboard/profile` | 🔒 Private |
-| 404 Not Found | `*` | Public |
-
----
-
-## 👨‍💻 Author
-
-**Your Name**
-- GitHub: [@yourusername](https://github.com/anikh174)
-- Email: hossainanik174@.com
-
----
-
-<p align="center">Made with ❤️ for better healthcare access in Bangladesh</p>
+</div>
